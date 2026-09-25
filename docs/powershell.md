@@ -57,10 +57,10 @@ You want:   TcpTestSucceeded : True
 ### 6. Your `.env`
 Then this is fine:
 
-# PORTA UTILIZZATA
+#### PORTA UTILIZZATA
 PORT=...
 
-# PARAMETRI DATABASE
+#### PARAMETRI DATABASE
 DB_USER=...
 DB_PASSWORD=""
 DB_SERVER=127.0.0.1
@@ -69,19 +69,19 @@ DB_NAME=...
 DB_ENCRYPT=true
 DB_TRUST_CERT=true
 
-# PARAMETRI SESSION E COOKIES
+#### PARAMETRI SESSION E COOKIES
 SESSION_SECRET=...
 
-# false => HTTP
+#### false => HTTP
 SECURE_SESSION=false
 TRUST_PROXY=false
 
-# true => HTTPS 
-# SECURE_SESSION=true
-# TRUST_PROXY=true
+#### true => HTTPS 
+#### SECURE_SESSION=true
+#### TRUST_PROXY=true
 ==============================================================================
 
-# DB CONFIG
+#### DB CONFIG
 const config = {
     server: process.env.DB_SERVER,
     port: Number(process.env.DB_PORT),
