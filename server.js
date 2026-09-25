@@ -59,6 +59,8 @@ app.use(express.static(path.join(__dirname, "public")));
 // app.use("/", loginRoutes);
 
 const pagesRoutes = require("./routes/pages.routes");
+const managersRoutes = require("./routes/managers.routes");
+app.use("/", managersRoutes);
 app.use("/", pagesRoutes);
 
 // ------------------------------------------------------------

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include("partials/head") %>
+
+<body>
+
+    <main class="grid-container">
+
+        <%- include("partials/admin-sidebar") %>
+
+        <div class="container">
+            <%- include("partials/admin-header") %>
+            <%- include("partials/admin-toolbar") %>
+            <%- include("partials/admin-table") %>
+            <%- include("partials/admin-status-bar") %>
+        </div>
+
+    </main>
+
+    <script type="module" src="../js/admin/admin-managers.js"></script>
+</body>
+</html>
