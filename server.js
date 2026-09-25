@@ -60,8 +60,10 @@ app.use(express.static(path.join(__dirname, "public")));
 
 const pagesRoutes = require("./routes/pages.routes");
 const managersRoutes = require("./routes/managers.routes");
-app.use("/", managersRoutes);
+const deptsRoutes = require("./routes/depts.routes");
 app.use("/", pagesRoutes);
+app.use("/", managersRoutes);
+app.use("/", deptsRoutes);
 
 // ------------------------------------------------------------
 // AVVIO DEL SERVER

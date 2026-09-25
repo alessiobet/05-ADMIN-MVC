@@ -1,6 +1,5 @@
-console.log('admin.manager');
-
 import { getManagers } from "../api/api.fetch.managers.js";
+import { getDepts } from "../api/api.fetch.depts.js";
 
 // import {  getSectors, getAllManagers, addNewManager, updateManager } from "./fetchApi.js";
 
@@ -18,21 +17,25 @@ const status = document.getElementById("status");
 const managers = await getManagers();
 // {idMng: 37, mng: 'C...', deptId: 4, dept: 'GASTRO', isActive: true} 
 
+const sectors = await getDepts();
+// {idDept: 5, dept: 'ADMIN', isActive: true}
+
 
 console.log(managers);
+console.log("=============================");
+console.log(sectors);
 
 
 
 
-// const sectors = await getSectors();
-// // {idDept: 5, dept: 'ADMIN', isActive: true}
 
 
-// // ==========================================================
-// // STATE  null - add - modify
-// // ==========================================================
-// let selectedId = null;
-// let editMode = null;
+
+// ==========================================================
+// STATE  null - add - modify
+// ==========================================================
+let selectedId = null;
+let editMode = null;
 
 // // ==========================================================
 // // LOAD TABLE
