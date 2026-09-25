@@ -58,7 +58,7 @@ You want:   TcpTestSucceeded : True
 Then this is fine:
 
 # PORTA UTILIZZATA
-PORT=3000
+PORT=...
 
 # PARAMETRI DATABASE
 DB_USER=...
