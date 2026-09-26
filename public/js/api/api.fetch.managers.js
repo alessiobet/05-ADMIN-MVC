@@ -27,9 +27,28 @@ async function addNewManager(payload) {
     }
 };
 
+// ADD NEW MANAGER --- POST 
+async function modifyManager(id, payload) {
+    try {
+        const response = await fetch(`/api/managers/${id}`, {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload)
+        });
+        if (!response.ok) { throw new Error(`HTTP error: ${response.status}`); }
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error("Failed to update manager:", error);
+        throw error;
+    }
+};
+
+
 export {
     getManagers,
-    addNewManager
+    addNewManager,
+    modifyManager
 }
 
 

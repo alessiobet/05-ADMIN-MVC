@@ -31,8 +31,28 @@ const handleAddNewManagers = async (req, res) => {
     }
 };
 
+const handleModifyManagers = async (req, res) => {
+    try {
+        const id = req.params.id;
+        const body = req.body;
+        const manager = await managersModel.modify(id, body);
+        res.status(200).json({
+            ok: true,
+            message: "Manager updated successfully",
+            manager
+        });
+    } catch (error) {
+        console.log("ERROR:", error.message);
+        res.status(500).json({
+            ok: false,
+            message: error.message
+        });
+    }
+};
+
 
 module.exports = {
     handleGetManagers,
-    handleAddNewManagers
+    handleAddNewManagers,
+    handleModifyManagers
 };

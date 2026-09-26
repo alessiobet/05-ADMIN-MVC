@@ -1,4 +1,4 @@
-import { getManagers, addNewManager } from "../api/api.fetch.managers.js";
+import { getManagers, addNewManager, modifyManager } from "../api/api.fetch.managers.js";
 import { getDepts } from "../api/api.fetch.depts.js";
 
 // table
@@ -96,7 +96,7 @@ function selectRow(row) {
     btnDelete.disabled = false;
     status.textContent = `Selected ID: ${selectedId}`;
 }
-// ADD
+// PREPARES THE ROW -- ADD
 btnAdd.addEventListener("click", () => {
     if (editMode) return;
     editMode = "add";
@@ -131,7 +131,7 @@ btnAdd.addEventListener("click", () => {
     document.getElementById("edit-manager").focus();
     status.textContent = "Adding new row...";
 });
-// MODIFY
+// PREPARE THE ROW -- MODIFY
 btnModify.addEventListener("click", () => {
     if (selectedId === null) return;
     const manager = managers.find(m => m.idMng === selectedId);
@@ -167,7 +167,7 @@ btnModify.addEventListener("click", () => {
     document.getElementById("edit-manager").focus();
     status.textContent = `Editing ID: ${selectedId}`;
 });
-// SAVE
+// SAVE => ADD => MODIFY
 btnSave.addEventListener("click", async () => {
     const dept = document.getElementById("edit-dept").value;
     const managerName = document.getElementById("edit-manager").value.trim();
@@ -185,17 +185,14 @@ btnSave.addEventListener("click", async () => {
         const result = await addNewManager(payload);
         alert(result.message)
     }
-
-
-
     
     // MODIFY
-    // get manager id
-    const managerId = 1; /////////////////////////////////
     if (editMode === "modify") {
-        const result = await updateManager(managerId, payload);
+        const result = await modifyManager(selectedId, payload);
         alert(result.message)
     }
+
+
 
     editMode = null;
     selectedId = null;

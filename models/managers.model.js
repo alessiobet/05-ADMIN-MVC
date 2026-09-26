@@ -1,5 +1,4 @@
 // // models/managers.model.js
-
 const { getPool } = require("../config/database");
 
 const getAll = async () => {
@@ -17,7 +16,6 @@ const getAll = async () => {
         `);
     return result.recordset;
 };
-
 const addNew = async (payload) => {
     const { deptId, mng, isActive } = payload;
     const pool = await getPool();
@@ -39,9 +37,36 @@ const addNew = async (payload) => {
 
     return result.recordset[0];
 };
+const modify = async (id, payload) => {
+    const { deptId, mng, isActive } = payload;
+    const pool = await getPool();
+    const result = await pool.request()
+        .input("id", sql.Int, Number(id))
+        .input("deptId", sql.Int, Number(deptId))
+        .input("mng", sql.NVarChar, mng?.trim().toUpperCase())
+        .input("isActive", sql.Bit, isActive)
+        .query(`
+            UPDATE Booking.managersT
+
+            SET
+                deptId = @deptId,
+                mng = @mng,
+                isActive = @isActive
+
+            OUTPUT
+                inserted.idMng,
+                inserted.deptId,
+                inserted.mng,
+                inserted.isActive
+
+            WHERE idMng = @id
+        `);
+    return result.recordset[0];
+};
 
 module.exports = {
     getAll,
-    addNew
+    addNew,
+    modify
 };
 
