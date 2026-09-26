@@ -259,6 +259,9 @@ header {
     flex: 1;
     min-height: 0;
     overflow: auto;
+    width: 96%;
+    margin: .7rem auto;
+    border: .1rem solid rgb(170, 169, 169);
 }
 
 
