@@ -3,6 +3,7 @@ import { getDepts } from "../api/api.fetch.depts.js";
 
 // import {  getSectors, getAllManagers, addNewManager, updateManager } from "./fetchApi.js";
 
+const table = document.getElementById("data-table");
 const tbody = document.getElementById("table-body");
 
 const btnAdd = document.getElementById("btn-add");
@@ -26,29 +27,85 @@ console.log("=============================");
 console.log(sectors);
 
 
-
-
-
-
-
 // ==========================================================
 // STATE  null - add - modify
 // ==========================================================
 let selectedId = null;
 let editMode = null;
 
-// // ==========================================================
-// // LOAD TABLE
-// // ==========================================================
-// async function loadTable() {
-//     tbody.innerHTML = "";
-//     managers.forEach(manager => {
-//         const tr = document.createElement("tr");
-//         tr.dataset.id = manager.idMng;
+// ==========================================================
+// LOAD TABLE
+// ==========================================================
+async function loadTable() {
+    
+
+    // TABLE HEADER WIDTH -- fill table => colGroup => col
+    const colGroup = table.querySelector("colgroup")
+    colGroup.innerHTML = "";
+    const lg = Object.keys(managers[0]).length
+    const colWidth = 100 / lg
+    for (let i = 0; i < lg; i++) {
+        const col = document.createElement("col");
+        col.style.width = `${colWidth}%`;
+        colGroup.appendChild(col);
+    };
+    
+    // TABLE HEADER TH -- fill table => thead => tr => th 
+    const headerTable = table.querySelector("thead")
+    headerTable.innerHTML = "";
+
+    const trHead = document.createElement("tr");
+
+    Object.keys(managers[0]).forEach(key => {
+        const th = document.createElement("th");
+        th.textContent = key
+        trHead.appendChild(th);
+    });
+    headerTable.appendChild(trHead)
+
+
+
+
+    // fill table => tbody => tr => td
+
+    tbody.innerHTML = "";
+
+
+    // managers.forEach(manager => {
+
+
+
+    //     const tr = document.createElement("tr");
+
+
+    //     tr.dataset.id = manager.idMng;
+    //     tr.innerHTML = `
+    //         <td>${manager.idMng}</td>
+    //         <td>${manager.dept}</td>
+    //         <td>${manager.mng}</td>
+    //         <td>
+    //             <input
+    //                 type="checkbox"
+    //                 ${manager.isActive ? "checked" : ""}
+    //                 disabled
+    //             >
+    //         </td>
+    //     `;
+    //     tr.addEventListener("click", () => {
+    //         selectRow(tr);
+    //     });
+    //     tbody.appendChild(tr);
+    // });
+    // rowCount.textContent = `${managers.length} rows`;
+}
+
+// async function loadManagers() {
+
+
 //         tr.innerHTML = `
 //             <td>${manager.idMng}</td>
-//             <td>${manager.dept}</td>
-//             <td>${manager.mng}</td>
+//             <td>${manager.department}</td>
+//             <td>${manager.manager}</td>
 //             <td>
 //                 <input
 //                     type="checkbox"
@@ -57,13 +114,12 @@ let editMode = null;
 //                 >
 //             </td>
 //         `;
-//         tr.addEventListener("click", () => {
-//             selectRow(tr);
-//         });
+
 //         tbody.appendChild(tr);
 //     });
-//     rowCount.textContent = `${managers.length} rows`;
 // }
+
+// loadManagers();
 
 // // ==========================================================
 // // SELECT ROW
@@ -285,4 +341,4 @@ let editMode = null;
 // // INITIAL LOAD
 // // ==========================================================
 
-// loadTable();
+loadTable();

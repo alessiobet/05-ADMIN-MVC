@@ -9,7 +9,7 @@ const getAll = async () => {
     const result = await pool.request()
         .query(`
             SELECT *
-            FROM Booking.managersT
+            FROM Booking.departmentsT
         `);
 
     return result.recordset;

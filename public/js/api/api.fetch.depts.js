@@ -1,6 +1,7 @@
+
 async function getDepts() {
     try {
-        const response = await fetch("/depts");
+        const response = await fetch("/api/depts");
 
         if (!response.ok) {
             throw new Error(`HTTP error: ${response.status}`);

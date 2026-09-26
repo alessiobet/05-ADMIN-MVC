@@ -1,27 +1,7 @@
 const express = require("express");
 const router = express.Router();
-const { getPool } = require("../config/database");
+const managersController = require("../controllers/managers.controller");
 
-router.get("/managers", async (req, res) => {
-    try {
-        const pool = await getPool();
-
-        const result = await pool.request()
-            .query(`
-                SELECT *
-                FROM Booking.managersT
-            `);
-
-        res.status(200).json(result.recordset);
-
-    } catch (error) {
-        console.log("SQL ERROR:", error.message);
-
-        res.status(500).json({
-            ok: false,
-            message: error.message
-        });
-    }
-});
+router.get("/api/managers", managersController.handleGetManagers );
 
 module.exports = router;

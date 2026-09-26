@@ -4,10 +4,6 @@ const session = require("express-session");
 const path = require("path");
 const { getPool } = require("./config/database.js");
 
-
-
-
-
 const SECURE_SESSION = process.env.SECURE_SESSION === "true";
 
 // ------------------------------------------------------------
@@ -52,12 +48,6 @@ app.use(express.static(path.join(__dirname, "public")));
 // ------------------------------------------------------------
 // ROUTES
 // ------------------------------------------------------------
-// const apiRoutes = require("./routes/api.routes");
-// const loginRoutes = require("./routes/login.routes");
-
-// app.use("/", apiRoutes);
-// app.use("/", loginRoutes);
-
 const pagesRoutes = require("./routes/pages.routes");
 const managersRoutes = require("./routes/managers.routes");
 const deptsRoutes = require("./routes/depts.routes");

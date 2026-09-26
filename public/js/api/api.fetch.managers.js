@@ -1,6 +1,6 @@
 async function getManagers() {
     try {
-        const response = await fetch("/managers");
+        const response = await fetch("/api/managers");
 
         if (!response.ok) {
             throw new Error(`HTTP error: ${response.status}`);
